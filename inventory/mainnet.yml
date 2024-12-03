@@ -1,14 +1,10 @@
 ---
-# maintains testnet inventory grouped by project names
+# maintains mainnet inventory grouped by project names
 all:
   vars:
     env: mainnet
   children:
-    sui:
+    mina:
       hosts:
-        bridge.sui.mainnet.encapsulate.xyz:
-          type: bridge
-        validator.sui.mainnet.encapsulate.xyz:
+        validator.mina.mainnet.encapsulate.xyz:
           type: validator
-        fullnode.sui.mainnet.encapsulate.xyz:
-          type: fullnode
