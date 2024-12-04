@@ -1,0 +1,28 @@
+---
+# maintains directories and paths
+node_home_dir: /opt/{{ service_identifier }}
+
+node_bin_dir: "{{ node_home_dir }}/bin"
+node_config_dir: "{{ node_home_dir }}/config"
+node_env_dir: "{{ node_home_dir }}/environment"
+node_key_dir: "{{ node_home_dir }}/key"
+node_log_dir: "{{ node_home_dir }}/log"
+node_lib_dir: "{{ node_home_dir }}/lib"
+
+node_directories:
+  - "{{ node_home_dir }}"
+  - "{{ node_bin_dir }}"
+  - "{{ node_config_dir }}"
+  - "{{ node_env_dir }}"
+  - "{{ node_key_dir }}"
+  - "{{ node_log_dir }}"
+  - "{{ node_lib_dir }}"
+
+node_config_file_path: "{{ node_config_dir }}/{{ node_config_file_name }}"
+node_log_file_path: "{{ node_log_dir }}/{{ service_identifier }}.log"
+
+node_environment_general_file_path: "{{ node_env_dir }}/{{ node_environment_general_file_name }}"
+node_environment_secrets_file_path: "{{ node_env_dir }}/{{ node_environment_secrets_file_name }}"
+
+node_private_key_path: "{{ node_key_dir }}/{{ node_private_key_file_name }}"
+node_public_key_path: "{{ node_key_dir }}/{{ node_public_key_file_name }}"

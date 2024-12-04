@@ -1,0 +1,68 @@
+---
+- name: Create mina docker container and copy binary
+  vars:
+    container_name: mina_fullnode
+  block:
+    - name: Create temporary mina container for binary extraction
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ mina.validator.source_url }}:{{ mina.validator.version }}"
+        state: present
+        recreate: true
+
+    - name: Copy mina binary
+      ansible.builtin.shell: >
+        docker cp {{ container_name }}:/usr/local/bin/{{ node_service_default_binary_name[0] }} {{ node_bin_dir }}/{{ service_identifier }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+    
+    - name: Copy mina-generate-keypair binary
+      ansible.builtin.shell: >
+        docker cp {{ container_name }}:/usr/local/bin/{{ node_service_default_binary_name[1] }} {{ node_bin_dir }}/{{ node_service_default_binary_name[1] }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+    
+    - name: Copy mina shared libraries
+      ansible.builtin.shell: >
+        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/{{ item }} {{ node_lib_dir }}
+      with_items: "{{ node_shared_libraries }}"
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+
+    - name: Ensure mina binary has the correct permissions
+      ansible.builtin.file:
+        path: "{{ node_bin_dir }}/{{ item }}"
+        owner: root
+        group: root
+        mode: "0755"
+      with_items: "{{ node_service_default_binary_name }}"
+      notify:
+        - Restart service
+    
+    - name: Set ownership for shared libraries
+      ansible.builtin.file:
+        path: "{{ node_lib_dir }}"
+        owner: root
+        group: root
+        recurse: true
+
+  # always:
+  #   - name: Remove mina container
+  #     community.docker.docker_container:
+  #       name: "{{ container_name }}"
+  #       state: absent

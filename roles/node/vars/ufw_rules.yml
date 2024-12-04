@@ -1,0 +1,13 @@
+---
+node_ufw_rules:
+  - port: "{{ mina.validator.ports.external_port }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: external_port
+
+  - port: "{{ mina.validator.ports.metrics_port }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics_port

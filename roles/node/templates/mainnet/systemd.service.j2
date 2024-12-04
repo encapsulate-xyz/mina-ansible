@@ -1,0 +1,29 @@
+[Unit]
+Description={{ service_identifier }}
+
+[Service]
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ node_home_dir }}
+EnvironmentFile={{ node_environment_general_file_path }}
+EnvironmentFile={{ node_environment_secrets_file_path }}
+
+ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
+  --peer-list-url "https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt" \
+  --external-port {{ mina.validator.ports.external_port }} \
+  --metrics-port {{ mina.validator.ports.metrics_port }} \
+  --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
+  --uptime-submitter-key {{ node_private_key_path }} \
+  --uptime-url "https://uptime-backend.minaprotocol.com/v1/submit"
+
+ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
+
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryLimit=64G
+StandardOutput=append:{{ node_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
