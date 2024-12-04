@@ -14,20 +14,10 @@ default_node_types:
   - validator
   - default
 
-sui:
+mina:
   validator:
-    source_url: https://releases.sui.io
+    source_url: gcr.io/o1labs-192920/mina-daemon
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  fullnode:
-    version: 88888888888
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  bridge:
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
+      external_port: 8302
+      graphql_port: 3095
+      metrics_port: 26660
