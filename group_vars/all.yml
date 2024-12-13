@@ -16,7 +16,6 @@ default_node_types:
 
 mina:
   validator:
-    source_url: gcr.io/o1labs-192920/mina-daemon
     ports:
       external_port: 8302
       graphql_port: 3095

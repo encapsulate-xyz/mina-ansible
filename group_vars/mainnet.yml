@@ -2,4 +2,5 @@
 # maintains versions and can overwrite all.yml
 mina:
   validator:
-    version: 3.0.4-beta1-f01cf0b-focal-mainnet
+    version: mina-mainnet=3.0.4-beta1-f01cf0b
+    release_type: beta
