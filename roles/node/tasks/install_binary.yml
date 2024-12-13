@@ -16,8 +16,8 @@
   ansible.builtin.deb822_repository:
     name: "mina-{{ mina.validator.release_type }}"
     types: deb
-    uris: http://packages.o1test.net
-    suites: focal
+    uris: "{{ mina.validator.source_url }}"
+    suites: "{{ ansible_distribution_release }}"
     components: "{{ mina.validator.release_type }}"
     state: present
     enabled: true
