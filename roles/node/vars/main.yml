@@ -11,19 +11,4 @@ node_public_key_file_name: wallet.pub
 # Environment file names
 node_environment_general_file_name: "{{ service_identifier }}.env"
 node_environment_secrets_file_name: "{{ service_identifier }}.secrets.env"
-
-# binary names
-node_service_default_binary_name:
-  - mina
-  - mina-generate-keypair
-  - coda-libp2p_helper
-
-# shared libraries
-node_shared_libraries:
-  - libcrypto.so.1.1
-  - libffi.so.7
-  - libjemalloc.so.2
-  - libssl.so.1.1
-  - libffi.so.7.1.0
-  - libpq.so.5
-  - libpq.so.5.12
+ 
