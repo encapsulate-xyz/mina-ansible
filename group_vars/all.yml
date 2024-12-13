@@ -16,7 +16,10 @@ default_node_types:
 
 mina:
   validator:
+    source_url: http://packages.o1test.net
     ports:
+      client_port: 8301
       external_port: 8302
+      rest_port: 3085
       graphql_port: 3095
-      metrics_port: 26660
+      metrics_port: 36455

@@ -4,3 +4,5 @@ mina:
   validator:
     version: mina-devnet=3.0.4-alpha1-889607b
     release_type: alpha
+    peer_list_url: https://bootnodes.minaprotocol.com/networks/devnet.txt
+    uptime_url: https://uptime-backend.minaprotocol.com/v1/submit
