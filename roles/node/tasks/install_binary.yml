@@ -28,6 +28,8 @@
     name: "{{ mina.validator.version }}"
     state: present
     update_cache: true
+  notify: 
+    - Restart service
 
 - name: Create symlink for binary
   ansible.builtin.file:
