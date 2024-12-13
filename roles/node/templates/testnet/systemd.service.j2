@@ -8,14 +8,16 @@ WorkingDirectory={{ node_home_dir }}
 EnvironmentFile={{ node_environment_secrets_file_path }}
 
 ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
-  --peer-list-url "https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt" \
-  --log-level Info --file-log-level Debug \
+  --peer-list-url "{{ mina.validator.peer_list_url }}" \
+  --log-level Info --file-log-level Info \
+  --client-port {{ mina.validator.ports.client_port }} \
+  --rest-port {{ mina.validator.ports.rest_port }} \
   --external-port {{ mina.validator.ports.external_port }} \
   --metrics-port {{ mina.validator.ports.metrics_port }} \
   --block-producer-key {{ node_private_key_path }} \
   --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
   --uptime-submitter-key {{ node_private_key_path }} \
-  --uptime-url "https://uptime-backend.minaprotocol.com/v1/submit"
+  --uptime-url "{{ mina.validator.uptime_url }}"
 
 ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
 
