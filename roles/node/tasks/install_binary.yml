@@ -10,7 +10,7 @@
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ mina_files.files }}"
-  when: mina_files.matched > 0 
+  when: mina_files.matched > 0
 
 - name: Add mina protocol repository
   ansible.builtin.deb822_repository:
@@ -21,14 +21,14 @@
     components: "{{ mina.validator.release_type }}"
     state: present
     enabled: true
-    trusted: yes
+    trusted: true
 
 - name: Install mina binary
   ansible.builtin.apt:
     name: "{{ mina.validator.version }}"
     state: present
     update_cache: true
-  notify: 
+  notify:
     - Restart service
 
 - name: Create symlink for binary
