@@ -39,7 +39,7 @@
       vars:
         vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_environment_secrets_file_name }}"
         secret_destination_path: "{{ node_environment_secrets_file_path }}"
-#         secret_type: environment
+        secret_type: environment
 
 - name: Copy mina node systemd service file
   ansible.builtin.template:
