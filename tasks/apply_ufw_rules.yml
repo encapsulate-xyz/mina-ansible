@@ -15,7 +15,7 @@
 - name: Apply UFW rule
   community.general.ufw:
     rule: "{{ item.rule }}"
-    port: "{{ item.port }}"
+    port: "{{ item.port | default('') }}"
     proto: "{{ item.proto }}"
     direction: "{{ item.direction | default('in') }}"
     from: "{{ from_server_ip.msg | default(item.from) }}"
