@@ -9,7 +9,7 @@ EnvironmentFile={{ node_environment_secrets_file_path }}
 
 ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
   --peer-list-url "{{ mina.validator.peer_list_url }}" \
-  --log-level Info --file-log-level Info \
+  --log-level Info \
   --client-port {{ mina.validator.ports.client_port }} \
   --rest-port {{ mina.validator.ports.rest_port }} \
   --external-port {{ mina.validator.ports.external_port }} \
