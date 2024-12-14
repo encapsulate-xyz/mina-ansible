@@ -34,6 +34,14 @@
         secret_destination_path: "{{ node_environment_secrets_file_path }}"
         secret_type: environment
 
+- name: Copy mina general env file
+  ansible.builtin.template:
+    src: "general.env.j2"
+    dest: "{{ node_environment_general_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Copy mina node systemd service file
   ansible.builtin.template:
     src: "{{ env }}/systemd.service.j2"

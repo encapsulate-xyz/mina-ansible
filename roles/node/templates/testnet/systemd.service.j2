@@ -14,7 +14,6 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory 
   --rest-port {{ mina.validator.ports.rest_port }} \
   --external-port {{ mina.validator.ports.external_port }} \
   --metrics-port {{ mina.validator.ports.metrics_port }} \
-  --block-producer-key {{ node_private_key_path }} \
   --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
   --uptime-submitter-key {{ node_private_key_path }} \
   --uptime-url "{{ mina.validator.uptime_url }}"

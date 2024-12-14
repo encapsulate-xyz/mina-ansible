@@ -19,5 +19,6 @@ node_config_file_path: "{{ node_config_dir }}/{{ node_config_file_name }}"
 node_log_file_path: "{{ node_log_dir }}/{{ service_identifier }}.log"
 
 node_environment_secrets_file_path: "{{ node_env_dir }}/{{ node_environment_secrets_file_name }}"
+node_environment_general_file_path: "{{ node_env_dir }}/{{ node_environment_general_file_name }}"
 
 node_private_key_path: "{{ node_key_dir }}/{{ node_private_key_file_name }}"
