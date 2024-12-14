@@ -14,20 +14,12 @@ default_node_types:
   - validator
   - default
 
-sui:
+mina:
   validator:
-    source_url: https://releases.sui.io
+    source_url: http://packages.o1test.net
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  fullnode:
-    version: 88888888888
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  bridge:
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
+      client_port: 8301
+      external_port: 8302
+      rest_port: 3085
+      graphql_port: 3095
+      metrics_port: 36455

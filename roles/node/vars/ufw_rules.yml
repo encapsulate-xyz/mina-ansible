@@ -1,0 +1,56 @@
+---
+node_ufw_rules:
+  - port: "{{ mina.validator.ports.external_port }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: external_port
+
+  - port: "{{ mina.validator.ports.metrics_port }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics_port
+
+  # Deny outbound traffic to specific private IP ranges
+  - rule: deny
+    direction: out
+    from: any
+    to: 10.0.0.0/8
+    proto: any
+    comment: traffic_to_10.0.0.0/8
+
+  - rule: deny
+    direction: out
+    from: any
+    to: 172.16.0.0/12
+    proto: any
+    comment: traffic_to_172.16.0.0/12
+
+  - rule: deny
+    direction: out
+    from: any
+    to: 192.168.0.0/16
+    proto: any
+    comment: traffic_to_192.168.0.0/16
+
+  - rule: deny
+    direction: out
+    from: any
+    to: 100.64.0.0/10
+    proto: any
+    comment: traffic_to_100.64.0.0/10
+
+  - rule: deny
+    direction: out
+    from: any
+    to: 198.18.0.0/15
+    proto: any
+    comment: traffic_to_198.18.0.0/15
+
+  - rule: deny
+    direction: out
+    from: any
+    to: 169.254.0.0/16
+    proto: any
+    comment: traffic_to_169.254.0.0/16
