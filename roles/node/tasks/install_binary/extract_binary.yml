@@ -1,0 +1,64 @@
+---
+- name: Create Mina Daemon container and copy binary
+  vars:
+    container_name: mina_daemon
+  block:
+    - name: Create temporary Mina Daemon container for binary extraction
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ mina.validator.source_url }}:{{ mina.validator.version }}"
+        state: present
+        recreate: true
+
+    - name: Copy Mina Daemon binary
+      ansible.builtin.shell: >
+        docker cp {{ container_name }}:/usr/local/bin/mina {{ node_bin_dir }}/{{ service_identifier }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+
+    - name: Copy coda-libp2p_helper binary
+      ansible.builtin.shell: >
+        docker cp {{ container_name }}:/usr/local/bin/coda-libp2p_helper {{ node_bin_dir }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+
+    - name: Copy required libraries from container
+      ansible.builtin.shell: |
+        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 {{ node_lib_dir }}
+        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libssl.so.1.1 {{ node_lib_dir }}
+        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libffi.so.7 {{ node_lib_dir }}
+        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libffi.so.7.1.0 {{ node_lib_dir }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+
+    - name: Copy required config from container
+      ansible.builtin.shell: |
+        docker cp {{ container_name }}:var/lib/coda/{{ mina.validator.config_file_name }} {{ node_config_file_path }}
+      args:
+        executable: /bin/bash
+      register: copy_result
+      changed_when: copy_result.rc == 0
+      failed_when:
+        - copy_result.rc != 0
+        - "'No such container' in copy_result.stderr"
+
+  always:
+    - name: Remove Mina Daemon container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: absent

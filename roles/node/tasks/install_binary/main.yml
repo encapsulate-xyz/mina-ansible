@@ -1,0 +1,6 @@
+---
+- name: Install Docker
+  ansible.builtin.import_tasks: install_docker.yml
+
+- name: Extract Binary
+  ansible.builtin.import_tasks: extract_binary.yml
