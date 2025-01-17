@@ -6,7 +6,7 @@ User={{ service_identifier }}
 Group={{ service_identifier }}
 WorkingDirectory={{ node_home_dir }}
 EnvironmentFile={{ node_environment_secrets_file_path }}
-
+EnvironmentFile={{ node_environment_general_file_path }}
 ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
   --peer-list-url "{{ mina.validator.peer_list_url }}" \
   --log-level Info \
@@ -16,6 +16,7 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory 
   --metrics-port {{ mina.validator.ports.metrics_port }} \
   --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
   --uptime-submitter-key {{ node_private_key_path }} \
+  --libp2p-keypair {{ node_libp2p_key_path }} \
   --uptime-url "{{ mina.validator.uptime_url }}"
 
 ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
