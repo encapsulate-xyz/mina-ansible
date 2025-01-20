@@ -33,11 +33,8 @@
         - "'No such container' in copy_result.stderr"
 
     - name: Copy required libraries from container
-      ansible.builtin.shell: |
-        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 {{ node_lib_dir }}
-        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libssl.so.1.1 {{ node_lib_dir }}
-        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libffi.so.7 {{ node_lib_dir }}
-        docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/libffi.so.7.1.0 {{ node_lib_dir }}
+      ansible.builtin.shell: docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/{{ item.src }} {{ node_lib_dir }}/{{ item.dest }}
+      loop: "{{ lib_files }}"
       args:
         executable: /bin/bash
       register: copy_result
