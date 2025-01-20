@@ -24,4 +24,3 @@ node_environment_secrets_file_path: "{{ node_env_dir }}/{{ node_environment_secr
 node_environment_general_file_path: "{{ node_env_dir }}/{{ node_environment_general_file_name }}"
 
 node_private_key_path: "{{ node_key_dir }}/{{ node_private_key_file_name }}"
-node_libp2p_key_path: "{{ node_key_dir }}/{{ node_libp2p_key_file_name }}"

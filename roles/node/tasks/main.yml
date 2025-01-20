@@ -50,13 +50,6 @@
         secret_destination_path: "{{ node_private_key_path }}"
         secret_type: json
 
-    - name: Fetch libp2p key from HCP Vault
-      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
-      vars:
-        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_libp2p_key_file_name }}"
-        secret_destination_path: "{{ node_libp2p_key_path }}"
-        secret_type: json
-
     - name: Fetch secrets environment from HCP Vault
       ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
       vars:

@@ -6,7 +6,6 @@ node_config_file_name: daemon.json
 
 # secret key file names
 node_private_key_file_name: wallet
-node_libp2p_key_file_name: libp2p-key
 
 # Environment file names
 node_environment_secrets_file_name: "{{ service_identifier }}.secrets.env"
