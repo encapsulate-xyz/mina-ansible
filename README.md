@@ -50,6 +50,18 @@ Clone this repository to your Ansible control node:
 git clone https://github.com/encapsulate-xyz/mina-ansible.git
 cd mina-ansible
 ```
+#### Branch Selection:
+
+Ubuntu 24.04: Use the main branch to install and run the Mina node.
+Ubuntu 20.04: Switch to the apt-20.04 branch for installation and execution.
+
+To switch branches, run:
+
+```bash
+git checkout <branch-name>
+```
+
+Replace <branch-name> with either main or apt-20.04, depending on your target Ubuntu version.
 
 ### 3. Inventory
 
