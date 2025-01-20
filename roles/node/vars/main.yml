@@ -12,7 +12,7 @@ node_environment_secrets_file_name: "{{ service_identifier }}.secrets.env"
 node_environment_general_file_name: "{{ service_identifier }}.env"
 
 # Lib file names
-lib_files:
+node_lib_file_names:
   - { src: "libasn1.so.8.0.0", dest: "libasn1.so.8" }
   - { src: "libcrypto.so.1.1", dest: "libcrypto.so.1.1" }
   - { src: "libffi.so.7.1.0", dest: "libffi.so.7" }

@@ -34,7 +34,7 @@
 
     - name: Copy required libraries from container
       ansible.builtin.shell: docker cp {{ container_name }}:/usr/lib/x86_64-linux-gnu/{{ item.src }} {{ node_lib_dir }}/{{ item.dest }}
-      loop: "{{ lib_files }}"
+      loop: "{{ node_lib_file_names }}"
       args:
         executable: /bin/bash
       register: copy_result
