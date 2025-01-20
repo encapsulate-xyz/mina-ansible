@@ -6,7 +6,7 @@ User={{ service_identifier }}
 Group={{ service_identifier }}
 WorkingDirectory={{ node_home_dir }}
 EnvironmentFile={{ node_environment_secrets_file_path }}
-
+EnvironmentFile={{ node_environment_general_file_path }}
 ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
   --peer-list-url "{{ mina.validator.peer_list_url }}" \
   --log-level Info \

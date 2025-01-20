@@ -15,7 +15,30 @@
     log_file_path: "{{ node_log_file_path }}"
 
 - name: Include Install binary task
-  ansible.builtin.include_tasks: install_binary.yml
+  ansible.builtin.include_tasks: install_binary/main.yml
+
+- name: Ensure Mina Daemon binary has the correct permissions
+  ansible.builtin.file:
+    path: "{{ node_bin_dir }}/{{ service_identifier }}"
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Ensure coda-libp2p_helper binary has the correct permissions
+  ansible.builtin.file:
+    path: "{{ node_bin_dir }}/coda-libp2p_helper"
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Ensure Mina Daemon config has the correct permissions
+  ansible.builtin.file:
+    path: "{{ node_config_file_path }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0644"
+  notify:
+    - Restart service
 
 - name: Fetch secrets from HCP Vault and save
   when: fetch_validator_keys | default(false) | bool
@@ -41,6 +64,8 @@
     owner: root
     group: root
     mode: "0644"
+  notify:
+    - Restart service
 
 - name: Copy mina node systemd service file
   ansible.builtin.template:
