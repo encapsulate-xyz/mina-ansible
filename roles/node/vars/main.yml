@@ -10,3 +10,22 @@ node_private_key_file_name: wallet
 # Environment file names
 node_environment_secrets_file_name: "{{ service_identifier }}.secrets.env"
 node_environment_general_file_name: "{{ service_identifier }}.env"
+
+# Lib file names
+node_lib_file_names:
+  - { src: "libasn1.so.8.0.0", dest: "libasn1.so.8" }
+  - { src: "libcrypto.so.1.1", dest: "libcrypto.so.1.1" }
+  - { src: "libffi.so.7.1.0", dest: "libffi.so.7" }
+  - { src: "libgssapi.so.3.0.0", dest: "libgssapi.so.3" }
+  - { src: "libhcrypto.so.4.1.0", dest: "libhcrypto.so.4" }
+  - { src: "libheimbase.so.1.0.0", dest: "libheimbase.so.1" }
+  - { src: "libheimntlm.so.0.1.0", dest: "libheimntlm.so.0" }
+  - { src: "libhx509.so.5.0.0", dest: "libhx509.so.5" }
+  - { src: "libjemalloc.so.2", dest: "libjemalloc.so.2" }
+  - { src: "libkrb5.so.26.0.0", dest: "libkrb5.so.26" }
+  - { src: "liblber-2.4.so.2.10.12", dest: "liblber-2.4.so.2" }
+  - { src: "libldap_r-2.4.so.2.10.12", dest: "libldap_r-2.4.so.2" }
+  - { src: "libpq.so.5.12", dest: "libpq.so.5" }
+  - { src: "libwind.so.0.0.0", dest: "libwind.so.0" }
+  - { src: "libssl.so.1.1", dest: "libssl.so.1.1" }
+  - { src: "libroken.so.18.1.0", dest: "libroken.so.18" }
