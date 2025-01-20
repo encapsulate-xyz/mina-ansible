@@ -52,8 +52,8 @@ cd mina-ansible
 ```
 #### Branch Selection:
 
-Ubuntu 24.04: Use the main branch to install and run the Mina node.
-Ubuntu 20.04: Switch to the apt-20.04 branch for installation and execution.
+- Ubuntu 24.04: Use the main branch to install and run the Mina node.
+- Ubuntu 20.04: Switch to the apt-20.04 branch for installation and execution.
 
 To switch branches, run:
 
