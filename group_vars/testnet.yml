@@ -2,6 +2,7 @@
 # maintains versions and can overwrite all.yml
 mina:
   validator:
+    source_url: gcr.io/o1labs-192920/mina-daemon
     version: 3.0.4-alpha1-889607b-focal-devnet
     config_file_name: config_889607b9.json
     peer_list_url: https://bootnodes.minaprotocol.com/networks/devnet.txt

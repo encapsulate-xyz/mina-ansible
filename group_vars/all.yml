@@ -16,7 +16,6 @@ default_node_types:
 
 mina:
   validator:
-    source_url: gcr.io/o1labs-192920/mina-daemon
     ports:
       client_port: 8301
       external_port: 8302
