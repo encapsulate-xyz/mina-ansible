@@ -15,8 +15,7 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory 
   --external-port {{ mina.validator.ports.external_port }} \
   --metrics-port {{ mina.validator.ports.metrics_port }} \
   --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
-  --uptime-submitter-key {{ node_private_key_path }} \
-  --uptime-url "{{ mina.validator.uptime_url }}"
+  --coinbase-receiver {{ mina.validator.coinbase_receiver }}
 
 ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
 
