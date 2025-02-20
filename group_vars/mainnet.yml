@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 mina:
   validator:
-    source_url: gcr.io/o1labs-192920
+    source_url: gcr.io/o1labs-192920/mina-daemon
     version: 3.0.4-beta1-343543b-focal-mainnet
     config_file_name: config_343543b2.json
     peer_list_url: https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
