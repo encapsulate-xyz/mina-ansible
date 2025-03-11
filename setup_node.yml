@@ -10,6 +10,10 @@
     - group_vars/vault.yml
     - group_vars/{{ env }}.yml
 
+  serial: 
+    - 2
+    - 1
+
   pre_tasks:
     - name: Setup Pre Tasks
       when: type in allowed_node_types
