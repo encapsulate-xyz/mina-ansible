@@ -67,3 +67,21 @@
   notify:
     - Reload service
     - Restart service
+
+- name: Trigger handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Check sync status
+  ansible.builtin.uri:
+    url: "http://localhost:{{ mina.validator.ports.rest_port }}/graphql"
+    method: POST
+    body_format: json
+    body: '{"query": "{ syncStatus }"}'
+    headers:
+      Content-Type: "application/json"
+    return_content: true
+  register: sync_response
+  until: (sync_response.status == 200) and (sync_response.content | from_json).data.syncStatus == "SYNCED"
+  ignore_errors: true # Do not fail the task if the request fails
+  delay: 120 # Wait 2 minutes between retries
+  retries: 10000 # Large number to allow long polling

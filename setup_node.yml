@@ -10,9 +10,7 @@
     - group_vars/vault.yml
     - group_vars/{{ env }}.yml
 
-  serial: 
-    - 2
-    - 1
+  serial: 1
 
   pre_tasks:
     - name: Setup Pre Tasks
