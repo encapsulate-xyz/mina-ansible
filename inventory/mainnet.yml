@@ -8,3 +8,7 @@ all:
       hosts:
         validator.mina.mainnet.encapsulate.xyz:
           type: validator
+        i2.validator.mina.mainnet.encapsulate.xyz:
+          type: validator
+        i3.validator.mina.mainnet.encapsulate.xyz:
+          type: validator
