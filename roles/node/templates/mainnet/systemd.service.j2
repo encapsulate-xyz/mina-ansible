@@ -16,7 +16,7 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory 
   --metrics-port {{ mina.validator.ports.metrics_port }} \
   --limited-graphql-port {{ mina.validator.ports.graphql_port }} \
   --block-producer-key {{ node_private_key_path }} \
-  --coinbase-receiver {{ mina.validator.coinbase_receiver }}
+  --coinbase-receiver {{ mina.validator.coinbase_receiver }} \
   --uptime-submitter-key {{ node_private_key_path }} \
   --uptime-url "{{ mina.validator.uptime_url }}"
 
