@@ -4,9 +4,6 @@
 # config file name
 node_config_file_name: daemon.json
 
-# secret key file names
-node_private_key_file_name: wallet
-
 # Environment file names
 node_environment_secrets_file_name: "{{ service_identifier }}.secrets.env"
 node_environment_general_file_name: "{{ service_identifier }}.env"
