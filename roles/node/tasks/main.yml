@@ -41,11 +41,21 @@
     - Restart service
 
 - name: Fetch secrets environment from HCP Vault
-  ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
-  vars:
-    vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_environment_secrets_file_name }}"
-    secret_destination_path: "{{ node_environment_secrets_file_path }}"
-    secret_type: environment
+  when: fetch_validator_keys | default(false) | bool
+  block:
+    - name: Fetch private key from HCP Vault
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_private_key_file_name }}"
+        secret_destination_path: "{{ node_private_key_path }}"
+        secret_type: json
+
+    - name: Fetch secrets environment from HCP Vault
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_environment_secrets_file_name }}"
+        secret_destination_path: "{{ node_environment_secrets_file_path }}"
+        secret_type: environment
 
 - name: Copy mina general env file
   ansible.builtin.template:

@@ -17,6 +17,14 @@
     mode: "0755"
   loop: "{{ directories }}"
 
+- name: Create mina key directory
+  ansible.builtin.file:
+    path: "{{ node_key_dir }}"
+    state: directory
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0700"
+
 - name: Create log file for the service
   ansible.builtin.file:
     path: "{{ log_file_path }}"
