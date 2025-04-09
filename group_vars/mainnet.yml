@@ -3,8 +3,8 @@
 mina:
   validator:
     source_url: gcr.io/o1labs-192920/mina-daemon
-    version: 3.1.0-beta1-a35e440-focal-mainnet
-    config_file_name: config_a35e4407.json
+    version: 3.1.0-ae112d3-focal-mainnet
+    config_file_name: config_ae112d3a.json
     peer_list_url: https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
     uptime_url: https://uptime-backend.minaprotocol.com/v1/submit
     coinbase_receiver: B62qjHJ4v7DkbayxpmjENUkrQAyj5szmQyn5nAkC5yyAwWRntvjazei
