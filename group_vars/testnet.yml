@@ -3,7 +3,7 @@
 mina:
   validator:
     source_url: gcr.io/o1labs-192920/mina-daemon
-    version: 3.1.2-alpha1-e8b0893--focal-devnet
+    version: 3.1.2-alpha1-e8b0893-focal-devnet
     config_file_name: config_e8b0893e.json
     peer_list_url: https://bootnodes.minaprotocol.com/networks/devnet.txt
     coinbase_receiver: B62qiqP9tB8uut1xMjKNH7EYEFViZoTJ8Lf34Z8YJPYvdHjE3JZwaaa
