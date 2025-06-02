@@ -12,6 +12,12 @@ node_ufw_rules:
     from: "{{ monitor_server_dns }}"
     comment: metrics_port
 
+  - port: "{{ mina.validator.ports.graphql_port }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: graphql_port
+
   # Deny outbound traffic to specific private IP ranges
   - rule: deny
     direction: out
