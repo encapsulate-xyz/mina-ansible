@@ -3,7 +3,7 @@
 mina:
   validator:
     version: 3.3.0-8c0c2e6-noble-mainnet
-    config_file_name: config_8c0c2e6.json
+    config_file_name: config_8c0c2e63.json
     peer_list_url: https://bootnodes.minaprotocol.com/networks/mainnet.txt
     uptime_url: https://uptime-backend.minaprotocol.com/v1/submit
     coinbase_receiver: B62qjHJ4v7DkbayxpmjENUkrQAyj5szmQyn5nAkC5yyAwWRntvjazei
