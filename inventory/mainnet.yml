@@ -6,7 +6,7 @@ all:
   children:
     mina:
       hosts:
-        i1.validator.mina.mainnet.encapsulate.xyz:
+        ts.i1.validator.mina.mainnet.encapsulate.xyz:
           type: validator
         i2.validator.mina.mainnet.encapsulate.xyz:
           type: validator
