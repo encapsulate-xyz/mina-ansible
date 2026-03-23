@@ -41,7 +41,7 @@
     - Restart service
 
 - name: Fetch secrets environment from HCP Vault
-  when: fetch_validator_keys | default(false) | bool
+  when: fetch_vault_secrets | default(false) | bool
   block:
     - name: Fetch private key from HCP Vault
       ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
