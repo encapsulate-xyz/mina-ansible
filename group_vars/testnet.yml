@@ -6,4 +6,4 @@ mina:
     version: 3.4.0-alpha1-22d9374-noble-devnet
     config_file_name: config_22d93743.json
     peer_list_url: https://bootnodes.minaprotocol.com/networks/devnet.txt
-    coinbase_receiver: B62qiqP9tB8uut1xMjKNH7EYEFViZoTJ8Lf34Z8YJPYvdHjE3JZwaaa
+    coinbase_receiver: B62qifKgayecfpj6SLyUQzG5RXp15ruZkNRZ5LNqbruK8q396zvpa4b
