@@ -42,7 +42,7 @@
 
 - name: Include Fetch mesa secrets
   ansible.builtin.include_tasks: fetch_mesa_secrets.yml
-  when: (fetch_vault_secret | default(false) | bool) and env == 'mesa'
+  when: (fetch_vault_secrets | default(false) | bool) and env == 'mesa'
 
 - name: Fetch secrets environment from HCP Vault
   when: (fetch_vault_secrets | default(false) | bool) and env != 'mesa'
