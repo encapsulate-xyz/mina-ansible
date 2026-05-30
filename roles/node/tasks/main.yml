@@ -40,14 +40,18 @@
   notify:
     - Restart service
 
+- name: Include Fetch mesa secrets
+  ansible.builtin.include_tasks: fetch_mesa_secrets.yml
+  when: (fetch_vault_secret | default(false) | bool) and env == 'mesa'
+
 - name: Fetch secrets environment from HCP Vault
-  when: fetch_vault_secrets | default(false) | bool
+  when: (fetch_vault_secrets | default(false) | bool) and env != 'mesa'
   block:
     - name: Fetch private key from HCP Vault
       ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
       vars:
         vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_private_key_file_name }}"
-        secret_destination_path: "{{ node_private_key_path }}"
+        secret_destination_path: "{{ node_private_key_file_path }}"
         secret_type: json
 
     - name: Fetch secrets environment from HCP Vault

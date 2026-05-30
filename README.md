@@ -175,7 +175,7 @@ Pausing for 20 seconds
   ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
   vars:
     vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ node_private_key_file_name }}"
-    secret_destination_path: "{{ node_private_key_path }}"
+    secret_destination_path: "{{ node_private_key_file_path }}"
     secret_type: json
 ```
 

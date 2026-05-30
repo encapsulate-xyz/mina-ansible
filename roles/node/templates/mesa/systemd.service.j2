@@ -7,7 +7,8 @@ Group={{ service_identifier }}
 WorkingDirectory={{ node_home_dir }}
 EnvironmentFile={{ node_environment_secrets_file_path }}
 EnvironmentFile={{ node_environment_general_file_path }}
-ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory {{ node_config_dir }} \
+ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon \
+  --config-directory {{ node_config_dir }} \
   --peer-list-url "{{ mina.validator.peer_list_url }}" \
   --log-level Info \
   --client-port {{ mina.validator.ports.client_port }} \
@@ -18,7 +19,15 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon --config-directory 
   --block-producer-key {{ node_private_key_file_path }} \
   --coinbase-receiver {{ mina.validator.coinbase_receiver }} \
   --uptime-submitter-key {{ node_private_key_file_path }} \
-  --uptime-url "{{ mina.validator.uptime_url }}"
+  --uptime-url "{{ mina.validator.uptime_url }}" \
+  --enable-peer-exchange true \
+  --external-ip {{ ansible_default_ipv4.address }} \
+  --insecure-rest-server \
+  --libp2p-keypair {{ node_libp2p_key_file_path }} \
+  --node-error-url {{ mina.validator.node_status_error_url }} \
+  --node-status-url {{ mina.validator.node_status_error_url }} \
+  --itn-graphql-port {{ mina.validator.ports.itn_graphql_port }} \
+  --itn-keys {{ mina.validator.itn_keys }}
 
 ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
 

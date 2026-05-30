@@ -1,0 +1,12 @@
+---
+# maintains mesa inventory grouped by project names
+all:
+  vars:
+    env: mesa
+  children:
+    mina:
+      hosts:
+        ts.i1.validator.mina.mesa.encapsulate.xyz:
+          type: validator
+        ts.i2.validator.mina.mesa.encapsulate.xyz:
+          type: validator
