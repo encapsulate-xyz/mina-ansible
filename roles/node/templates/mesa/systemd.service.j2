@@ -27,7 +27,8 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} daemon \
   --node-error-url {{ mina.validator.node_status_error_url }} \
   --node-status-url {{ mina.validator.node_status_error_url }} \
   --itn-graphql-port {{ mina.validator.ports.itn_graphql_port }} \
-  --itn-keys {{ mina.validator.itn_keys }}
+  --itn-keys {{ mina.validator.itn_keys }} \
+  --internal-tracing
 
 ExecStop={{ node_bin_dir }}/{{ service_identifier }} client stop-daemon
 
