@@ -10,20 +10,9 @@
         state: present
         recreate: true
 
-    - name: Copy Mina Daemon binary
+    - name: Copy Mina Daemon binaries
       ansible.builtin.shell: >
-        docker cp {{ container_name }}:/usr/local/bin/mina {{ node_bin_dir }}/{{ service_identifier }}
-      args:
-        executable: /bin/bash
-      register: copy_result
-      changed_when: copy_result.rc == 0
-      failed_when:
-        - copy_result.rc != 0
-        - "'No such container' in copy_result.stderr"
-
-    - name: Copy coda-libp2p_helper binary
-      ansible.builtin.shell: >
-        docker cp {{ container_name }}:/usr/local/bin/coda-libp2p_helper {{ node_bin_dir }}
+        docker cp {{ container_name }}:/usr/lib/mina/. {{ node_bin_dir }}
       args:
         executable: /bin/bash
       register: copy_result
@@ -60,16 +49,12 @@
         name: "{{ container_name }}"
         state: absent
 
-- name: Ensure Mina Daemon binary has the correct permissions
-  ansible.builtin.file:
-    path: "{{ node_bin_dir }}/{{ service_identifier }}"
+- name: Copy mina node script file
+  ansible.builtin.template:
+    src: "{{ env }}/mina.sh.j2"
+    dest: "{{ node_script_file_path }}"
     owner: root
     group: root
     mode: "0755"
-
-- name: Ensure coda-libp2p_helper binary has the correct permissions
-  ansible.builtin.file:
-    path: "{{ node_bin_dir }}/coda-libp2p_helper"
-    owner: root
-    group: root
-    mode: "0755"
+  notify:
+    - Restart service

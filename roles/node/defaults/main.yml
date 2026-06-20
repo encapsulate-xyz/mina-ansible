@@ -25,3 +25,6 @@ node_environment_general_file_path: "{{ node_env_dir }}/{{ node_environment_gene
 
 node_private_key_file_path: "{{ node_key_dir }}/{{ node_private_key_file_name }}"
 node_libp2p_key_file_path: "{{ node_key_dir }}/{{ node_libp2p_key_file_name }}"
+
+node_script_file_path: "{{ node_bin_dir }}/{{ service_identifier }}"
+
