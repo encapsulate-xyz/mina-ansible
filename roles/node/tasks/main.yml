@@ -17,20 +17,6 @@
 - name: Include Install binary task
   ansible.builtin.include_tasks: install_binary/main.yml
 
-- name: Ensure Mina Daemon binary has the correct permissions
-  ansible.builtin.file:
-    path: "{{ node_bin_dir }}/{{ service_identifier }}"
-    owner: root
-    group: root
-    mode: "0755"
-
-- name: Ensure coda-libp2p_helper binary has the correct permissions
-  ansible.builtin.file:
-    path: "{{ node_bin_dir }}/coda-libp2p_helper"
-    owner: root
-    group: root
-    mode: "0755"
-
 - name: Ensure Mina Daemon config has the correct permissions
   ansible.builtin.file:
     path: "{{ node_config_file_path }}"
@@ -63,7 +49,7 @@
 
 - name: Copy mina general env file
   ansible.builtin.template:
-    src: "general.env.j2"
+    src: "{{ env }}/general.env.j2"
     dest: "{{ node_environment_general_file_path }}"
     owner: "{{ service_identifier }}"
     group: "{{ service_identifier }}"
