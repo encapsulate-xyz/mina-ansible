@@ -1,0 +1,23 @@
+---
+- name: Decommission service
+  hosts: all
+  become: true
+  gather_facts: true
+  vars_files:
+    - group_vars/ports.yml
+    - group_vars/all.yml
+    - group_vars/default.yml
+    - group_vars/vault.yml
+    - group_vars/{{ env }}.yml
+
+  pre_tasks:
+    - name: Include environment setup tasks
+      ansible.builtin.include_tasks: tasks/setup_environment.yml
+
+  tasks:
+    - name: Include common handlers
+      ansible.builtin.include_role:
+        name: common
+    - name: Include decommission_service role
+      ansible.builtin.include_role:
+        name: decommission_service
