@@ -1,0 +1,69 @@
+---
+- name: Include UFW vars and apply ufw rules
+  block:
+    - name: Include UFW vars file
+      ansible.builtin.include_vars:
+        file: >-
+          {{ 'roles/node/vars/ufw_rules.yml' }}
+    
+    - name: Get UFW rules variable
+      ansible.builtin.set_fact:
+        ufw_rules_var: "{{ lookup('vars', vars.keys() | select('search', '_ufw_rules$') | first) }}"
+
+    - name: Extract UFW rules
+      ansible.builtin.set_fact:
+        ufw_rules_list: >-
+          {{ ufw_rules_var }}
+
+    - name: Apply UFW rules
+      ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+      loop: "{{ ufw_rules_list }}"
+      vars:
+        sunset_delete_rule: true
+
+  rescue:
+    - name: No UFW vars file found
+      ansible.builtin.debug:
+        msg: "No UFW vars file found, skipping UFW rules application"
+
+- name: Stop and disable systemd service and timer
+  ansible.builtin.service:
+    name: "{{ service_identifier }}.{{ item }}"
+    state: stopped
+    enabled: false
+  loop:
+    - "service"
+    - "timer"
+  ignore_errors: true
+
+- name: Delete home directory
+  ansible.builtin.file:
+    path: "/opt/{{ service_identifier }}"
+    state: absent
+
+- name: Delete systemd service and timer files
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ service_identifier }}.{{ item }}"
+    state: absent
+  loop:
+    - "service"
+    - "timer"
+  ignore_errors: true
+
+- name: Delete user
+  ansible.builtin.user:
+    name: "{{ service_identifier }}"
+    state: absent
+    remove: true
+
+- name: Delete group
+  ansible.builtin.group:
+    name: "{{ service_identifier }}"
+    state: absent
+  ignore_errors: true
+
+- name: Delete project group
+  ansible.builtin.group:
+    name: "{{ project }}"
+    state: absent
+  ignore_errors: true
