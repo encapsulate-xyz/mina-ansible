@@ -4,8 +4,3 @@
 
 - name: Extract Binary
   ansible.builtin.import_tasks: extract_binary.yml
-  # when: env != 'mesa'
-
-# - name: Extract Mesa Binary
-#   ansible.builtin.import_tasks: extract_mesa_binaries.yml
-#   when: env == 'mesa'

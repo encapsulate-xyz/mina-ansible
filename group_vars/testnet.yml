@@ -2,8 +2,7 @@
 # maintains versions and can overwrite all.yml
 mina:
   validator:
-    source_url: gcr.io/o1labs-192920/mina-daemon
-    version: 3.4.0-alpha1-22d9374-noble-devnet
-    config_file_name: config_22d93743.json
-    peer_list_url: https://bootnodes.minaprotocol.com/networks/devnet.txt
+    version: 4.0.0-6965b50-noble-devnet
+    config_file_name: config_6965b502.json
+    peer_list_url: https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
     coinbase_receiver: B62qifKgayecfpj6SLyUQzG5RXp15ruZkNRZ5LNqbruK8q396zvpa4b
