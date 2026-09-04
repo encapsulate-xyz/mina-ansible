@@ -6,4 +6,4 @@ mina:
     config_file_name: config_68503010.json
     peer_list_url: https://bootnodes.minaprotocol.com/networks/mainnet.txt
     uptime_url: https://uptime-backend.minaprotocol.com/v1/submit
-    coinbase_receiver: B62qjHJ4v7DkbayxpmjENUkrQAyj5szmQyn5nAkC5yyAwWRntvjazei
+    coinbase_receiver: B62qpzDyzVQ8sLg7Mjj4R4zW41rqx99FMqeRB5JpM548yENR77Hg2xu
