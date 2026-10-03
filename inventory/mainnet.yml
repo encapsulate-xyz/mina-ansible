@@ -12,5 +12,3 @@ all:
           type: validator
         ts.i3.validator.mina.mainnet.encapsulate.xyz:
           type: validator
-        100.93.178.12:
-          type: validator
