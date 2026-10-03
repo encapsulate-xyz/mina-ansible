@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 mina:
   validator:
-    version: 4.0.0-6965b50-noble-devnet
-    config_file_name: config_6965b502.json
+    version: 4.0.1-1e9d141-noble-devnet
+    config_file_name: config_1e9d1419.json
     peer_list_url: https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
     coinbase_receiver: B62qifKgayecfpj6SLyUQzG5RXp15ruZkNRZ5LNqbruK8q396zvpa4b
