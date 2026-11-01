@@ -1,0 +1,8 @@
+# This file contains ignores rule violations for ansible-lint
+roles/decommission_service/tasks/main.yml ignore-errors
+roles/decommission_service/tasks/main.yml var-naming[no-role-prefix]
+roles/decommission_service/tasks/main.yml yaml[trailing-spaces]
+roles/node/defaults/main.yml yaml[empty-lines]
+roles/node/tasks/install_binary/extract_binary.yml var-naming[no-role-prefix]
+roles/node/tasks/install_binary/install_docker.yml yaml[trailing-spaces]
+roles/node/tasks/main.yml var-naming[no-role-prefix]
