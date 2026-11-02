@@ -29,3 +29,21 @@
         - name: Include node role
           ansible.builtin.include_role:
             name: node
+            public: true
+
+  post_tasks:
+    - name: Verify node
+      when: type in allowed_node_types
+      block:
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ node_log_file_path }}"
+            # the unit gets LD_LIBRARY_PATH from its env file, for the copied libjemalloc
+            version_command: "env LD_LIBRARY_PATH={{ node_lib_dir }} {{ node_bin_dir }}/{{ service_identifier }} version"
+            # mina version prints the build commit; the image tag carries its short hash
+            expected_version: "{{ mina.validator.version | regex_search('[0-9a-f]{7}(?=-[a-z]+-[a-z]+$)') }}"
+            health_url: "http://localhost:{{ mina.validator.ports.rest_port }}/graphql"
+            health_method: POST
+            health_body:
+              query: "{ syncStatus }"
